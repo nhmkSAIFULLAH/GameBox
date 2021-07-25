@@ -18,7 +18,7 @@ allprojects {
   
   ```gradle
   dependencies {
-	        implementation 'com.github.nhmkSAIFULLAH:Quizer:1.0.0'
+	        implementation 'com.github.nhmkSAIFULLAH:Quizer:1.0.1'
 	}
   ```
   
