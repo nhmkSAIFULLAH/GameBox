@@ -20,7 +20,6 @@ public class LazyQuizer {
      *
      */
     private int currentIndex = 0;
-    private String currentQuestion, currentOption1, currentOption2, currentOption3, currentOption4;
     private TextView tvQuestion, tvOption1, tvOption2, tvOption3, tvOption4;
     private Button btnOption1, btnOption2, btnOption3, btnOption4;
     private boolean quizFinished = false;
@@ -51,7 +50,7 @@ public class LazyQuizer {
 
     /**
      *
-     * @param applicationContext is need to initialize the Quizer Constracter
+     * @param applicationContext is need to initialize the Quizer Constructor
      */
     public LazyQuizer(Context applicationContext) {
         this.context = applicationContext;
@@ -63,7 +62,7 @@ public class LazyQuizer {
 
     /**
      *
-     * @param quizList
+     * @param quizList this list
      * @return a list of Quiz made by user. This is a mandatory method for Quizer library.
      */
     public LazyQuizer setQuizList(List<Quiz> quizList) {
@@ -73,11 +72,11 @@ public class LazyQuizer {
 
     /**
      *
-     * @param tvQuestion
-     * @param tvOption1
-     * @param tvOption2
-     * @param tvOption3
-     * @param tvOption4
+     * @param tvQuestion is
+     * @param tvOption1 is
+     * @param tvOption2 is
+     * @param tvOption3 is
+     * @param tvOption4 is
      * @return the primary element of Quiz. This is a mandatory method for Quizer library.
      */
     public LazyQuizer setPrimaryElement(TextView tvQuestion, TextView tvOption1, TextView tvOption2, TextView tvOption3, TextView tvOption4) {
@@ -106,9 +105,9 @@ public class LazyQuizer {
 
     /**
      *
-     * @param progressBar
+     * @param progressBar is
      * @return this method is used to set a progressBar for Quiz.
-     * This is an optional Metho.
+     * This is an optional Method.
      */
     public LazyQuizer setProgressBar(ProgressBar progressBar) {
         this.progressBar = progressBar;
@@ -136,7 +135,7 @@ public class LazyQuizer {
 
 
     /**
-     * @param onSuccessListener
+     * @param onSuccessListener is
      * @return user can call this method if they want to do something when the answer will be correct.
      */
     public LazyQuizer setOnSuccessListener(SetOnSuccessListener onSuccessListener){
@@ -146,7 +145,7 @@ public class LazyQuizer {
     }
 
     /**
-     * @param onFailureListener
+     * @param onFailureListener is
      * @return user can call this method if they want to do something when the answer will be correct.
      */
     public LazyQuizer setOnFailureListener(SetOnFailureListener onFailureListener){
@@ -156,7 +155,7 @@ public class LazyQuizer {
     }
 
     /**
-     * @param onFinishedListener
+     * @param onFinishedListener is
      * @return user can call this method if they want to do something when all quiz will be finished.
      */
     public LazyQuizer setOnFinishedListener(SetOnFinishedListener onFinishedListener){
@@ -173,7 +172,7 @@ public class LazyQuizer {
 
         setQuiz(currentIndex);
         totalQuestion = quizList.size();
-        this.addProgress = (int) Math.ceil(100/totalQuestion);
+        this.addProgress = (int) Math.ceil(100.0/totalQuestion);
 //        this.cutProgress = (int) Math.ceil(100/totalQuestion);
 
 
@@ -208,11 +207,11 @@ public class LazyQuizer {
      *                     from Quiz List to Quiz Element.
      */
     private void setQuiz(int currentIndex) {
-        currentQuestion = quizList.get(currentIndex).getQuestion();
-        currentOption1 = quizList.get(currentIndex).getOption1();
-        currentOption2 = quizList.get(currentIndex).getOption2();
-        currentOption3 = quizList.get(currentIndex).getOption3();
-        currentOption4 = quizList.get(currentIndex).getOption4();
+        String currentQuestion = quizList.get(currentIndex).getQuestion();
+        String currentOption1 = quizList.get(currentIndex).getOption1();
+        String currentOption2 = quizList.get(currentIndex).getOption2();
+        String currentOption3 = quizList.get(currentIndex).getOption3();
+        String currentOption4 = quizList.get(currentIndex).getOption4();
 
         tvQuestion.setText(currentQuestion);
 
@@ -239,12 +238,9 @@ public class LazyQuizer {
     private void setOnClick(TextView tvOption) {
 
 
-            tvOption.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (!quizFinished){
-                        checkAnswer(String.valueOf(tvOption.getText()));
-                    }
+            tvOption.setOnClickListener(v -> {
+                if (!quizFinished){
+                    checkAnswer(String.valueOf(tvOption.getText()));
                 }
             });
 
@@ -252,12 +248,9 @@ public class LazyQuizer {
     }
     private void setOnClick(Button tvOption) {
 
-        tvOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!quizFinished){
-                    checkAnswer(String.valueOf(tvOption.getText()));
-                }
+        tvOption.setOnClickListener(v -> {
+            if (!quizFinished){
+                checkAnswer(String.valueOf(tvOption.getText()));
             }
         });
     }
@@ -309,7 +302,7 @@ public class LazyQuizer {
         }
 
         if (progressbarSet){
-            updateProgressBar(true);
+            updateProgressBar();
         }
 
         if (tvScoreSet){
@@ -350,12 +343,10 @@ public class LazyQuizer {
     /**
      * This method is used to update the value of progressBar if available.
      */
-    private void updateProgressBar(boolean addOrCut) {
+    private void updateProgressBar() {
 
-        if (addOrCut){
             progressBar.incrementProgressBy(addProgress);
 
-        }
         if (questionCount>totalQuestion){
             progressBar.setProgress(100);
         }
