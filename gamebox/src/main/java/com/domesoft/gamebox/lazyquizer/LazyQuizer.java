@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.domesoft.gamebox.Quiz;
+import com.domesoft.gamebox.RandomizeQuizKt;
 import com.domesoft.gamebox.interfaces.SetOnFailureListener;
 import com.domesoft.gamebox.interfaces.SetOnFinishedListener;
 import com.domesoft.gamebox.interfaces.SetOnSuccessListener;
@@ -67,6 +68,11 @@ public class LazyQuizer {
      */
     public LazyQuizer setQuizList(List<Quiz> quizList) {
         this.quizList = quizList;
+        return this;
+    }
+
+    public LazyQuizer setOptionRandomly(){
+        this.quizList = RandomizeQuizKt.randomizeQuiz(quizList);
         return this;
     }
 

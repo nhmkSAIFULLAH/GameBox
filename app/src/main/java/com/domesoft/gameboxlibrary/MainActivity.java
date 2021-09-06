@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.domesoft.gamebox.interfaces.SetOnFailureListener;
-import com.domesoft.gamebox.interfaces.SetOnFinishedListener;
-import com.domesoft.gamebox.interfaces.SetOnSuccessListener;
 import com.domesoft.gamebox.lazyquizer.LazyQuizer;
 import com.domesoft.gamebox.Quiz;
 
@@ -38,14 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         List<Quiz> myQuiz = new ArrayList<>();
-        myQuiz.add(new Quiz("what is the meaning of 1","1","2","3","4","1"));
-        myQuiz.add(new Quiz("what is the meaning of 2","1","2","3","4","2"));
-        myQuiz.add(new Quiz("what is the meaning of 3","1","2","3","4","3"));
-        myQuiz.add(new Quiz("what is the meaning of 4","1","2","3","4","4"));
-        myQuiz.add(new Quiz("what is the meaning of 5","1","2","5","4","5"));
-        myQuiz.add(new Quiz("what is the meaning of 6","6","2","5","4","6"));
 
-        LazyQuizer lazyQuizer = new LazyQuizer(this).setPrimaryElement(tvQ,tvO1,tvO2,tvO3,tvO4).setQuizList(myQuiz);
+        myQuiz.add(new Quiz("what is the meaning of A","A","2","3","4","A"));
+        myQuiz.add(new Quiz("what is the meaning of B","B","2","3","4","B"));
+        myQuiz.add(new Quiz("what is the meaning of C","C","2","3","4","C"));
+        myQuiz.add(new Quiz("what is the meaning of D","D","2","3","4","D"));
+        myQuiz.add(new Quiz("what is the meaning of E","E","2","3","4","E"));
+        myQuiz.add(new Quiz("what is the meaning of F","F","2","3","4","F"));
+
+        LazyQuizer lazyQuizer = new LazyQuizer(this).setPrimaryElement(tvQ,tvO1,tvO2,tvO3,tvO4).setQuizList(myQuiz).setOptionRandomly();
         lazyQuizer.setProgressBar(progressBar);
 
         lazyQuizer.setOnSuccessListener(currentPosition ->
@@ -59,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
         int score = 10;
         lazyQuizer.setScore(score,10,tvScore);
         lazyQuizer.create();
-
-
-
 
     }
 }
