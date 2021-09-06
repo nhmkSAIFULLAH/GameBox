@@ -1,6 +1,11 @@
 package com.domesoft.gamebox.lazyquizer;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -45,6 +50,11 @@ public class LazyQuizer {
     private boolean successClicked = false;
     private boolean failureClicked = false;
     private boolean finishedClicked = false;
+
+
+    private boolean isSpanned = false;
+    private String spanColor;
+    private int spanStart;
 
 
 
@@ -202,7 +212,28 @@ public class LazyQuizer {
 
 
 
+    private SpannableStringBuilder spannable(String text){
 
+        final SpannableStringBuilder sb = new SpannableStringBuilder(text);
+        // Span to set text color to some RGB value
+        final ForegroundColorSpan fcs = new ForegroundColorSpan(Color.parseColor(spanColor));
+        // Span to make text bold
+        final StyleSpan bss = new StyleSpan(android.graphics.Typeface.BOLD);
+        // Set the text color for first 4 characters
+        sb.setSpan(fcs, spanStart, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        // make them also bold
+        sb.setSpan(bss, spanStart, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        return sb;
+    }
+
+
+    public LazyQuizer setSpannable(String color, int startSpan){
+        isSpanned = true;
+        spanColor = color;
+        spanStart = startSpan;
+
+        return this;
+    }
 
 
 
@@ -219,7 +250,11 @@ public class LazyQuizer {
         String currentOption3 = quizList.get(currentIndex).getOption3();
         String currentOption4 = quizList.get(currentIndex).getOption4();
 
-        tvQuestion.setText(currentQuestion);
+        if (isSpanned){
+            tvQuestion.setText(spannable(currentQuestion));
+        } else {
+            tvQuestion.setText(currentQuestion);
+        }
 
         if (tvOption1 != null && tvOption2 != null && tvOption3 != null && tvOption4 != null) {
             tvOption1.setText(currentOption1);

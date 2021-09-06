@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         tvScore = findViewById(R.id.tvScore);
 
 
+        String text = "what is the meaning of Abide ";
+        String text1 = "what is the meaning of";
+        int ind = text.indexOf("Abide");
+
         List<Quiz> myQuiz = new ArrayList<>();
 
         myQuiz.add(new Quiz("what is the meaning of A","A","2","3","4","A"));
@@ -47,14 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
         lazyQuizer.setOnSuccessListener(currentPosition ->
 
-                        Toast.makeText(MainActivity.this, "Successful", Toast.LENGTH_SHORT).show())
+                        Toast.makeText(MainActivity.this,String.valueOf(ind), Toast.LENGTH_SHORT).show()
+        )
 
                 .setOnFailureListener(currentPosition ->
                         Toast.makeText(MainActivity.this, "Correct answer is "+ myQuiz.get(currentPosition).getAnswer(), Toast.LENGTH_SHORT).show())
                 .setOnFinishedListener(finalScore ->
                         Toast.makeText(MainActivity.this, "Your score is "+String.valueOf(finalScore), Toast.LENGTH_SHORT).show());
         int score = 10;
-        lazyQuizer.setScore(score,10,tvScore);
+        lazyQuizer.setScore(score,10,tvScore).setSpannable("#FF03DAC5", 23);
         lazyQuizer.create();
 
     }
