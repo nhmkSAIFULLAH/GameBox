@@ -1,5 +1,6 @@
 package com.domesoft.gamebox
 
+import com.domesoft.gamebox.quizer.Quiz
 import kotlin.random.Random
 
 

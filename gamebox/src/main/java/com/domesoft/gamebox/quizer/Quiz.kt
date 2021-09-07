@@ -1,4 +1,4 @@
-package com.domesoft.gamebox
+package com.domesoft.gamebox.quizer
 
 data class Quiz(
     val question: String,

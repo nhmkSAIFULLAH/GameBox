@@ -32,7 +32,7 @@ allprojects {
   Step 4. Declare and initialize Quizer from your java class and pass your activity context with it.
   
   ```   
-  Quizer lazyQuizer = new Quizer(getApplicationContext());
+  Quizer quizer = new Quizer(getApplicationContext());
   
   ```
   
@@ -64,14 +64,14 @@ allprojects {
   Step 6. Pass the Quiz List myQuiz and main Element of Textview or Button for Question and Option view.
   
  ```
-  lazyQuizer.setQuizList(myQuiz);
-  lazyQuizer.setPrimaryElement(tvQuestion, tvOption1, tvOption2, tvOption3, tvOption4);
+  quizer.setQuizList(myQuiz);
+  quizer.setPrimaryElement(tvQuestion, tvOption1, tvOption2, tvOption3, tvOption4);
   
  ```
  Step 7. Create the Quiz by call create() method.
  
  ```
- lazyQuizer.create();
+ quizer.create();
  ```
  
  You can do it by one line.
@@ -79,6 +79,6 @@ allprojects {
  Example:
  
  ```
- Quizer lazyQuizer = new Quizer(getApplicationContext()).setQuizList(myQuiz).setPrimaryElement(tvQuestion, tvOption1, tvOption2, tvOption3, tvOption4).create();
+ Quizer quizer = new Quizer(getApplicationContext()).setQuizList(myQuiz).setPrimaryElement(tvQuestion, tvOption1, tvOption2, tvOption3, tvOption4).create();
  
  ```
